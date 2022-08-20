@@ -1,10 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <label class="switch">
-      <input type="checkbox" />
-      <span class="slider round"></span>
-    </label>
+    <h1 id="msg">{{ msg }}</h1>
+    <div class="wrapper">
+      <span id="sun">☀️</span>
+      <label class="switch">
+        <input type="checkbox" @change="toggleTheme()" />
+        <span class="slider round"></span>
+      </label>
+      <span id="moon">🌙</span>
+    </div>
   </div>
 </template>
 
@@ -14,11 +18,38 @@ export default {
   props: {
     msg: String,
   },
+  data() {
+    return {};
+  },
+
+  methods: {
+    toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      document.getElementById("msg").classList.toggle("dark-mode")
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+.dark-mode {
+  background-color: #1e1e1e !important;
+  color: #ddd !important;
+}
+
+span#sun {
+  font-size: 2rem;
+  position: relative;
+  margin-right: 10%;
+}
+
+span#moon {
+  font-size: 2rem;
+  position: relative;
+  margin-left: 10%;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -74,13 +105,15 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-/* 
-input:hover + .slider {
-  -webkit-animation: glowHover 1.5s ease-in-out infinite alternate;
-  -moz-animation: glowHover 1.5s ease-in-out infinite alternate;
-  animation: glowHover 1.5s ease-in-out infinite alternate;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: auto;
+  /* padding: 1%; */
 }
- */
+
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
@@ -111,18 +144,4 @@ input:hover + .slider {
   }
 }
 
-/* h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
 </style>
