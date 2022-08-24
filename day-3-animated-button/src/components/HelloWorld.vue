@@ -2,12 +2,21 @@
   <div class="hello">
     <h1 id="msg">{{ msg }}</h1>
     <div class="wrapper">
-      <span id="sun">☀️</span>
       <label class="switch">
-        <input type="checkbox" @change="toggleTheme()" />
+        <input
+          id="btn1"
+          type="checkbox"
+          @change="toggleCheck('btn2')"
+        />
         <span class="slider round"></span>
       </label>
-      <span id="moon">🌙</span>
+    </div>
+    <br /><br />
+    <div class="wrapper">
+      <label class="switch">
+        <input id="btn2" type="checkbox" @change="toggleCheck('btn1')" />
+        <span class="slider round"></span>
+      </label>
     </div>
   </div>
 </template>
@@ -19,14 +28,23 @@ export default {
     msg: String,
   },
   data() {
-    return {};
-  },
-
-  methods: {
-    toggleTheme() {
-      document.body.classList.toggle("dark-mode");
-      document.getElementById("msg").classList.toggle("dark-mode")
-    },
+    return {
+      toggleCheck(id) {
+        var idChecked = document.getElementById(id);
+        var bt1 = document.getElementById("btn1"),
+          bt2 = document.getElementById("btn2");
+        var id1 = "btn1",
+          id2 = "btn2";
+        if (idChecked.checked && idChecked.id === id1) {
+          bt1.checked = false;
+          bt2.checked = true;
+        }
+        else if (idChecked.checked && idChecked.id === id2) {
+          bt1.checked = true;
+          bt2.checked = false;
+        }
+      },
+    };
   },
 };
 </script>
@@ -76,8 +94,8 @@ span#moon {
   right: 0;
   bottom: 0;
   background-color: rgba(204, 204, 204, 0.9);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .slider:before {
@@ -88,8 +106,8 @@ span#moon {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 input:checked + .slider {
@@ -143,5 +161,13 @@ input:checked + .slider:before {
     opacity: 0;
   }
 }
-
 </style>
+<!-- @change="toggleTheme()" -->
+<!--  methods: {
+    toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      document.getElementById("msg").classList.toggle("dark-mode")
+    },
+  }, -->
+  <!--  <span id="sun">☀️</span> -->
+  <!-- <span id="moon">🌙</span> -->
