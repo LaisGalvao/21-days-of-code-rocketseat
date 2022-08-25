@@ -2,19 +2,16 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Calculadora"/>
-    <CalculadoraComponent/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import CalculadoraComponent from './components/CalculadoraComponent.vue';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    CalculadoraComponent
 }
 }
 </script>
