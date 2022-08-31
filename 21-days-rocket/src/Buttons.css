@@ -1,0 +1,18 @@
+.btn-day {
+    width: max-content;
+    height: max-content;
+    font-size: 25px;
+    padding: 2%;
+    border-radius: 15px;
+    border: groove 8px lightblue;
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-flow: wrap;
+    width: 100vh;
+    justify-content: center;
+    flex-direction: row;
+    margin: auto;
+    gap: 10px;
+}
