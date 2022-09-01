@@ -5,14 +5,38 @@
     padding: 2%;
     border-radius: 15px;
     border: groove 8px lightblue;
+    color: rgb(64, 74, 83);
 }
 
 .btn-wrapper {
     display: flex;
     flex-flow: wrap;
-    width: 100vh;
+    width: 100%;
     justify-content: center;
     flex-direction: row;
     margin: auto;
     gap: 10px;
+}
+
+.btn-day a {
+    color: rgb(64, 74, 83);
+}
+
+.btn-day:hover {
+    border: groove 5px lightblue;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:visited {
+    color: rgb(64, 74, 83);
+}
+
+a:hover {
+    color: rgb(60, 51, 119);
 }

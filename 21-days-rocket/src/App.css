@@ -1,7 +1,8 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: rgb(30, 24, 68);
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,13 +23,16 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  height: 10vh;
+  background-color: rgb(18, 14, 43);
+  height: 5vh;
   top: 0;
   position: fixed;
   padding: 5%;
   width: 100%;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .App-link {
@@ -39,7 +43,14 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .App-header {
+    padding: 8%;
   }
 }
