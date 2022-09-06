@@ -22,8 +22,8 @@ let btns = [
     {
         id: 4,
         txt: "Dia 4",
-        link: "",
-        target: ""
+        link: "https://21-days-of-code-day4.netlify.app/",
+        target: "_blank"
     }
 ]
 
