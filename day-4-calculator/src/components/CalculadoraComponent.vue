@@ -1,168 +1,65 @@
 <template>
-  <!--  <div class="grid">
-    <div class="grid_buttons">
-      <div v-for="(btn, index) in buttons" :key="index">
-        <button @click="clicked(btn.text)" class="btn" :id="btn.id">
-          {{ btn.text }}
-        </button>
-      </div>
-    </div>
-  </div> -->
   <div>
     <table id="calcu">
       <tr>
         <td colspan="3"><input type="text" id="result" /></td>
         <!-- clr() function will call clr to clear all value -->
         <td>
-          <input
-            type="button"
-            value="c"
-            onclick="clr()"
-            style="background-color: purple"
-          />
+          <input id="c-btn" type="button" value="c" @click="clr()" />
         </td>
       </tr>
       <tr>
         <!-- create button and assign value to each button -->
         <!-- dis("1") will call function dis to display value -->
-        <td>
+        <td v-for="(b, index) in colBtn1" :key="index">
           <input
-            class="btn-numbers"
+            :class="'btn-numbers ' + b.className"
+            :style="'background-color: ' + b.color + '!important'"
             type="button"
-            value="1"
-            onclick="dis('1')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            class="btn-numbers"
-            type="button"
-            value="2"
-            onclick="dis('2')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            class="btn-numbers"
-            type="button"
-            value="3"
-            onclick="dis('3')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            type="button"
-            value="/"
-            onclick="dis('/')"
-            onkeydown="myFunction(event)"
+            :value="b.value"
+            @click="dis(b.value)"
+            @keydown="myFunction(event)"
           />
         </td>
       </tr>
       <tr>
-        <td>
+        <td v-for="(b, index) in colBtn2" :key="index">
           <input
-            class="btn-numbers"
+            :class="'btn-numbers ' + b.className"
+            :style="'background-color: ' + b.color + '!important'"
             type="button"
-            value="4"
-            onclick="dis('4')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            class="btn-numbers"
-            type="button"
-            value="5"
-            onclick="dis('5')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            class="btn-numbers"
-            type="button"
-            value="6"
-            onclick="dis('6')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            type="button"
-            value="*"
-            onclick="dis('*')"
-            onkeydown="myFunction(event)"
+            :value="b.value"
+            @click="dis(b.value)"
+            @keydown="myFunction(event)"
           />
         </td>
       </tr>
       <tr>
-        <td>
+        <td v-for="(b, index) in colBtn3" :key="index">
           <input
-            class="btn-numbers"
+            :class="'btn-numbers ' + b.className"
+            :style="'background-color: ' + b.color + '!important'"
             type="button"
-            value="7"
-            onclick="dis('7')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            class="btn-numbers"
-            type="button"
-            value="8"
-            onclick="dis('8')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            class="btn-numbers"
-            type="button"
-            value="9"
-            onclick="dis('9')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            type="button"
-            value="-"
-            onclick="dis('-')"
-            onkeydown="myFunction(event)"
+            :value="b.value"
+            @click="dis(b.value)"
+            @keydown="myFunction(event)"
           />
         </td>
       </tr>
       <tr>
-        <td>
+        <td v-for="(b, index) in colBtn4" :key="index">
           <input
-            class="btn-numbers"
+            :class="'btn-numbers ' + b.className"
+            :style="'background-color: ' + b.color + '!important'"
             type="button"
-            value="0"
-            onclick="dis('0')"
-            onkeydown="myFunction(event)"
-          />
-        </td>
-        <td>
-          <input
-            type="button"
-            value="."
-            onclick="dis('.')"
-            onkeydown="myFunction(event)"
+            :value="b.value"
+            @click="dis(b.value)"
+            @keydown="myFunction(event)"
           />
         </td>
         <!-- solve function call function solve to evaluate value -->
-        <td><input type="button" value="=" onclick="solve()" /></td>
-
         <td>
-          <input
-            type="button"
-            value="+"
-            onclick="dis('+')"
-            onkeydown="myFunction(event)"
-          />
+          <input id="equal-btn" type="button" value="=" @click="solve()" />
         </td>
       </tr>
     </table>
@@ -170,64 +67,150 @@
 </template>
 
 <script>
+import { evaluate } from "mathjs";
 export default {
   data() {
     return {
-      buttons: [
+      colBtn1: [
         {
-          id: 0,
-          text: "0",
+          value: "1",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
         },
         {
-          id: 1,
-          text: "1",
+          value: "2",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
         },
         {
-          id: 2,
-          text: "2",
+          value: "3",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
         },
+        {
+          className: "btn-green",
+          value: "/",
+          color: "green",
+        },
+      ],
+      colBtn2: [
+        {
+          value: "3",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+        {
+          value: "5",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+        {
+          value: "6",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+        {
+          className: "btn-green",
+          value: "*",
+          color: "green",
+        },
+      ],
+      colBtn3: [
+        {
+          value: "7",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+        {
+          value: "8",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+        {
+          value: "9",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+        {
+          className: "btn-green",
+          value: "-",
+          color: "green",
+        },
+      ],
+      colBtn4: [
+        {
+          value: "0",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+        {
+          value: ".",
+          color:
+            "background: rgb(2,0,36); background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 100%, rgba(0,212,255,1) 100%);",
+        },
+
+        { className: "btn-green", value: "+", color: "green" },
       ],
     };
   },
-  mounted() {
+  created() {
     console.log(this.buttons.map((i) => i.id));
+    var cal = document.getElementById("calcu");
+    cal.onkeyup = function (event) {
+      if (event.keyCode === 13) {
+        console.log("Enter");
+        let x = document.getElementById("result").value;
+        console.log(x);
+        this.solve();
+      }
+    };
   },
   methods: {
-    clicked(number) {
-      console.log(number);
+    // Function that display value
+    dis(val) {
+      document.getElementById("result").value += val;
+    },
+
+    myFunction(event) {
+      if (
+        event.key == "0" ||
+        event.key == "1" ||
+        event.key == "2" ||
+        event.key == "3" ||
+        event.key == "4" ||
+        event.key == "5" ||
+        event.key == "6" ||
+        event.key == "7" ||
+        event.key == "8" ||
+        event.key == "9" ||
+        event.key == "+" ||
+        event.key == "-" ||
+        event.key == "*" ||
+        event.key == "/"
+      )
+        document.getElementById("result").value += event.key;
+    },
+
+    // Function that evaluates the digit and return result
+    solve() {
+      let x = document.getElementById("result").value;
+      console.log(x);
+      let y = evaluate(x);
+      document.getElementById("result").value = y;
+    },
+
+    // Function that clear the display
+    clr() {
+      document.getElementById("result").value = "";
     },
   },
 };
 </script>
 
 <style>
-/* .grid {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: stretch;
-  align-items: stretch;
-}
-
-.grid_buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  width: 300px;
-  max-width: 300px;
-  overflow: hidden;
-  margin: auto;
-  flex-wrap: wrap;
-}
-
-.btn {
-  width: 80px;
-  height: 80px;
-} */
 table {
-  border: 1px solid black;
+  border: 2.5px groove rgb(22, 22, 22);
+  border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -235,12 +218,39 @@ table {
 input[type="button"] {
   width: 100%;
   padding: 20px 40px;
-  background-color: green;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    17deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(44, 63, 80, 1) 0%,
+    rgba(0, 255, 106, 1) 100%
+  );
   color: white;
   font-size: 24px;
   font-weight: bold;
   border: none;
   border-radius: 5px;
+}
+
+input[type="button"]:focus,
+input[type="button"]:hover {
+  background: rgb(2, 0, 36) !important;
+  background: linear-gradient(
+    40deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(44, 62, 80, 1) 60%,
+    rgba(0, 212, 255, 1) 100%
+  ) !important;
+}
+
+input[type="button"].btn-green:hover,
+input[type="button"].btn-green:focus {
+  background: rgb(2, 0, 36) !important;
+  background: linear-gradient(
+    157deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 182, 76, 1) 100%
+  ) !important;
 }
 
 input[type="text"] {
@@ -252,8 +262,28 @@ input[type="text"] {
   border: 2px solid black;
 }
 
-.btn-numbers{
+.btn-numbers {
   background-color: #2c3e50 !important;
 }
+#c-btn,
+#equal-btn {
+  background: rgb(2, 0, 36) !important;
+  background: linear-gradient(
+    157deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(134, 0, 182, 1) 100%
+  ) !important;
+}
+
+#c-btn:hover,
+#c-btn:focus,
+#equal-btn:hover,
+#equal-btn:focus {
+  background: rgb(2, 0, 36) !important;
+  background: linear-gradient(
+    157deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(134, 0, 182, 1) 31%
+  ) !important;
+}
 </style>
-<!-- https://www.geeksforgeeks.org/html-calculator/ -->
