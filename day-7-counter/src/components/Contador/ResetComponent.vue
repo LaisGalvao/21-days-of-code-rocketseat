@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button>reset</button>
+    <button class="button is-danger">reset</button>
   </div>
 </template>
 

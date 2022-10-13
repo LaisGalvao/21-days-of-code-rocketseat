@@ -1,11 +1,13 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div>
-      <ShowCountComponent/>
-      <StartComponent/>
-      <PauseComponent/>
-      <ResetComponent />
+    <div class="is-flex is-flex-direction-column is-justify-content-center py-2">
+      <ShowCountComponent :timeCount="'00:00:00'" />
+      <div class="is-flex is-flex-direction-row is-justify-content-center py-2">
+        <StartComponent />
+        <PauseComponent />
+        <ResetComponent />
+      </div>
     </div>
   </div>
 </template>
@@ -16,12 +18,17 @@ import PauseComponent from "./Contador/PauseComponent.vue";
 import ResetComponent from "./Contador/ResetComponent.vue";
 import ShowCountComponent from "./Contador/ShowCountComponent.vue";
 export default {
-    name: "HelloWorld",
-    props: {
-        msg: String
-    },
-    components: { StartComponent, PauseComponent, ResetComponent, ShowCountComponent }
-}
+  name: "HelloWorld",
+  props: {
+    msg: String,
+  },
+  components: {
+    StartComponent,
+    PauseComponent,
+    ResetComponent,
+    ShowCountComponent,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

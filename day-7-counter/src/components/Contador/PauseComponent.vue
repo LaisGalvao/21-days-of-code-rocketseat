@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button>pause</button>
+    <button class="button is-warning">pause</button>
   </div>
 </template>
 
